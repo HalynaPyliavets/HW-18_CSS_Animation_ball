@@ -1,56 +1,150 @@
 
-body { 
-  background-color: #fff; 
-  background-size: 1000px 900px;
+/*Зробила контейнер для більшої наглядності*/ 
+.ball-container { 
+  background-image: url(../images/gross.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 1300px;
+  height: 1000px;
+  overflow: hidden;
 }
 
-.ball { /*властивості мяча*/ 
+/*Властивості мяча*/ 
+.ball { 
   position: absolute;
+  z-index: 1;
   height: 100px;
   width: 100px;
-  border-radius: 100%; /*роблю квадрат кругом*/ 
-  background: #cc3f85;
-  animation-name: dws-bounce, dws-moveleft; /*назва анімацій, якщо більше 1-ї, то прописуємо через кому*/ 
-  animation-duration: 4s, 25s; /*час відтворення анімації*/ 
-  animation-iteration-count: infinite, infinite; /*кількість програвань анімації - безкінечність*/ 
-  animation-timing-function: linear, linear; /*ф-я розподілу анімованих значень*/ 
+  border-radius: 50%;/*роблю квадрат кругом*/  
+  box-sizing: 0px;
+  background-image: url(../images/boll-pool.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  animation-name: jumping; 
+  animation-duration: 5s; /*час відтворення анімації*/ 
+  animation-iteration-count: infinite; /*кількість програвань анімації - безкінечність*/ 
+  animation-timing-function: linear; /*ф-я розподілу анімованих значень*/
+  
 }
 
-/*АНІМАЦІЯ*/ 
-@keyframes dws-bounce { /*рух зверху вниз*/ 
-  0% { bottom:100%; box-shadow: 0 0 5px rgba(0,0,0,0.5);}
-  25% { bottom:0; width:100px; height:100px; background: #cc3f85;}
-  30% { bottom:0; height: 25px; width:110px; background: red; }
-  35% { bottom:0; width:100px; height:100px; box-shadow: 0 50px 50px rgba(0,0,0,0.1);}
-  70% { bottom:100%; background: #cc3f85;}
-  100% { bottom:100%;  }
+/*АНІМАЦІЯ мяча*/ 
+
+/*Амплітуда, обертання*/ 
+@keyframes jumping {  
+  0% { 
+    transform: translate(0, 0);
+  }
+  20% { 
+    transform: translate(240px, 880px);  
+    height: 90px; width: 105px; /*деформація мячика*/ 
+  }
+  40% { 
+    transform: translate(470px, 240px) rotate(360deg); /*обертання мячика*/
+    width: 100px; height: 100px;
+  }
+  60% { 
+    transform: translate(700px, 880px) rotate(360deg); 
+    height: 90px; width: 105px; /*деформація мячика*/  
+  }
+  80% { 
+    transform: translate(830px, 340px); 
+    width: 100px; height: 100px;
+  }
+  90% { 
+    transform: translate(960px, 880px); 
+    height: 90px; width: 105px; /*деформація мячика*/  
+  }
+  95% { 
+    transform: translate(1040px, 640px); 
+    width: 100px; height: 100px;
+  }
+  100% { 
+    transform: translate(1120px, 880px);  
+    height: 90px; width: 105px; /*деформація мячика*/ 
+  }
+} 
+
+/*Властивості тіні*/ 
+.ball-shadow {
+  width: 70px;
+  height: 30px;
+  border-radius: 35px / 15px; /*тінь від мячика овальної форми*/ 
+  position: absolute;
+  z-index: 0;
+  background: rgba(20, 20, 20, 0.1);
+  box-shadow: 0px 0 20px 20px rgba(20, 20, 20, 0.1);
+  animation-name: shadow; 
+  animation-duration: 5s; /*час відтворення анімації*/ 
+  animation-iteration-count: infinite; /*кількість програвань анімації - безкінечність*/ 
+  animation-timing-function: linear; /*ф-я розподілу анімованих значень*/ 
 }
 
-@keyframes dws-moveleft { /*зліва направо*/ 
-  0% {left: 0;}
-  100% {left: 100%;}
-}
+/*Тінь*/ 
+@keyframes shadow { 
+  0% {
+    transform: translate(0, 940px);
+    width: 30px;
+    height: 20px;
+    border-radius: 15px / 10px; 
+    background: rgba(20, 20, 20, 0.1);
+    box-shadow: 0px 0 20px 20px rgba(20, 20, 20, 0.1);
+  }
+  20% {
+    transform: translate(220px, 940px);
+    width: 70px;
+    height: 30px;
+    border-radius: 35px / 15px; 
+    background: rgba(20, 20, 20, 0.4);
+    box-shadow: 0px 0px 20px 25px rgba(20, 20, 20, 0.4);
+  }
+  40% {
+    transform: translate(450px, 940px);
+    width: 30px;
+    height: 20px;
+    border-radius: 15px / 10px; 
+    background: rgba(20, 20, 20, 0.1);
+    box-shadow: 0px 0px 20px 20px rgba(20, 20, 20, 0.1);
+  }
+  60% {
+    transform: translate(680px, 940px);
+    width: 70px;
+    height: 30px;
+    border-radius: 35px / 15px; 
+    background: rgba(20, 20, 20, 0.4);
+    box-shadow: 0px 0px 20px 25px rgba(20, 20, 20, 0.4);
+  }
+  80% { 
+    transform: translate(810px, 940px);
+    width: 30px;
+    height: 20px;
+    border-radius: 15px / 10px; 
+    background: rgba(20, 20, 20, 0.1);
+    box-shadow: 0px 0px 20px 20px rgba(20, 20, 20, 0.1);
+  }
+  90% {
+    transform: translate(940px, 940px);
+    width: 70px;
+    height: 30px;
+    border-radius: 35px / 15px;  
+    background: rgba(20, 20, 20, 0.4);
+    box-shadow: 0px 0px 20px 25px rgba(20, 20, 20, 0.4);
+  }
+  95% { 
+    transform: translate(1020px, 940px);
+    width: 30px;
+    height: 20px;
+    border-radius: 15px / 10px; 
+    background: rgba(20, 20, 20, 0.1);
+    box-shadow: 0px 0px 20px 20px rgba(20, 20, 20, 0.1);
+  }
+  100% {
+    transform: translate(1100px, 940px);
+    width: 70px;
+    height: 30px;
+    border-radius: 35px / 15px; 
+    background: rgba(20, 20, 20, 0.4);
+    box-shadow: 0px 0px 20px 25px rgba(20, 20, 20, 0.4);
+  }
+} 
 
-
-@keyframes bouncing{
-  0%  { bottom: 0; box-shadow: 0 0 5px rgba(0,0,0,0.5);}
-  100%{ bottom: 50px; box-shadow: 0 50px 50px rgba(0,0,0,0.1);}
-}
-
-a {
-    animation: bouncing 0.5s cubic-bezier(.1,.25,.1,1) 0s infinite alternate both;
-    background: lightslategrey;
-    border-radius: 2px;
-    display: inline-block;
-    color: white;
-    cursor: pointer;
-    font-size: 0.75rem;
-    font-weight: 300;
-    letter-spacing: 0.2em;
-    padding: 1em 2em 1.1em;
-    position: relative;
-    text-decoration: none;
-    text-transform: uppercase;
-    vertical-align: top;
-    margin-top: 50px;
-}
